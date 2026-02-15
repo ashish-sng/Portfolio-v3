@@ -49,6 +49,12 @@ body {
   @apply bg-background text-foreground text-base antialiased;
 }
 
+/* In-page anchors (#work, #experience, etc.) scroll to sections with top breathing room
+   so sticky navigation does not cover headings when linked from the header. */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 @layer utilities {
   /* Utility uses theme() indirection so spacing changes are centralized in tokens.
      This keeps spacing consistent and avoids ad-hoc one-off values in components. */

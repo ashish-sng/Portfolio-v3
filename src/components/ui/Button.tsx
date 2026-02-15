@@ -1,20 +1,23 @@
-import type { ButtonHTMLAttributes } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type MouseEventHandler, type ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "className" | "onClick"> & {
   variant?: ButtonVariant;
+  className?: string;
+  children: ReactNode;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    "bg-accent text-background border border-accent hover:bg-accent/90 focus-visible:ring-accent/40",
-  secondary:
-    "bg-surface text-foreground border border-border hover:bg-surface/80 focus-visible:ring-border"
+  primary: "border border-accent bg-accent text-background hover:bg-accent/90 focus-visible:ring-accent/40",
+  secondary: "border border-border bg-surface text-foreground hover:bg-surface/80 focus-visible:ring-accent/30"
 };
 
-export function Button({ variant = "primary", className = "", type = "button", children, ...props }: ButtonProps) {
-  // Semantic variant classes keep visual intent stable while token values can evolve by theme.
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  { variant = "primary", className = "", type = "button", children, ...props },
+  ref
+) {
   const classes = [
     "inline-flex items-center justify-center rounded-radius-md px-spacing-md py-spacing-sm text-small font-medium transition-colors",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-60",
@@ -25,8 +28,8 @@ export function Button({ variant = "primary", className = "", type = "button", c
     .join(" ");
 
   return (
-    <button type={type} className={classes} {...props}>
+    <button ref={ref} type={type} className={classes} {...props}>
       {children}
     </button>
   );
-}
+});

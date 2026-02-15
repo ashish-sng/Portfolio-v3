@@ -17,8 +17,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen pb-16 pt-8 sm:pt-10">{children}</body>
+    // Smooth scrolling + sticky header offset support makes in-page anchor navigation predictable.
+    <html lang="en" className="scroll-smooth">
+      <body className="min-h-screen pb-16">{children}</body>
     </html>
   );
 }
