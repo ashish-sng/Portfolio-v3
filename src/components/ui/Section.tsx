@@ -14,7 +14,7 @@ const spacingClasses: Record<SectionSpacing, string> = {
 };
 
 export const Section = forwardRef<HTMLElement, SectionProps>(function Section(
-  { id, bordered = true, spacing = "md", className = "", children, ...props },
+  { id, bordered = false, spacing = "md", className = "", children, ...props },
   ref
 ) {
   const classes = ["space-y-spacing-md", spacingClasses[spacing], bordered ? "border-b border-border" : "", className]

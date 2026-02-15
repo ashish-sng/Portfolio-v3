@@ -1,13 +1,16 @@
 import { Footer } from "@/components/layout/Footer";
+import { HeroSection } from "@/components/hero/hero-section";
+import { Contact } from "@/components/sections/Contact";
+import { Philosophy } from "@/components/sections/Philosophy";
 import { experience, heroSummary, skillsHighlight } from "@/content/portfolio";
 import { selectedProjects } from "@/content/projects";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Text } from "@/components/ui/Text";
 
 const sectionContainerClass = "space-y-spacing-md";
 const sectionHeaderClass = "space-y-spacing-xs";
+const projectCardClass = "space-y-spacing-md rounded-radius-md bg-surface/70 p-spacing-lg";
 const contentCardClass = "space-y-spacing-sm rounded-radius-md border border-border bg-surface p-spacing-md";
 const listClass = "list-disc space-y-spacing-sm pl-spacing-lg";
 const tightListClass = "list-disc space-y-spacing-xs pl-spacing-lg";
@@ -24,28 +27,33 @@ export default function HomePage() {
         </Text>
       </a>
       <main id="main-content">
-        <Section id="hero" aria-labelledby="hero-title">
+        <HeroSection summary={heroSummary} />
+
+        <Section id="engineering-approach" aria-labelledby="approach-title">
           <Container className={sectionContainerClass}>
             <header className={sectionHeaderClass}>
-              <Text id="hero-title" variant="h1">
-                Ashish Singh
+              <Text id="approach-title" variant="h2">
+                Engineering Approach
               </Text>
-              <Text variant="h2" className="text-muted">
-                Full-Stack Leaning Frontend Engineer
+              <Text variant="body" className="text-muted">
+                Core strengths used to build maintainable, production-ready product systems.
               </Text>
             </header>
-            <Text variant="body" className="max-w-2xl text-muted">
-              {heroSummary}
-            </Text>
-            <form action="/resume.pdf" method="get">
-              <Button type="submit" variant="primary">
-                Download Resume
-              </Button>
-            </form>
+            <ul className={listClass}>
+              {skillsHighlight.map((skill) => (
+                <li key={skill}>
+                  <Text variant="body" className="text-muted">
+                    {skill}
+                  </Text>
+                </li>
+              ))}
+            </ul>
           </Container>
         </Section>
 
-        <Section id="selected-work" aria-labelledby="work-title">
+        <Philosophy />
+
+        <Section id="work" aria-labelledby="work-title">
           <Container className={sectionContainerClass}>
             <header className={sectionHeaderClass}>
               <Text id="work-title" variant="h2">
@@ -57,7 +65,7 @@ export default function HomePage() {
             </header>
             <div className="grid grid-cols-1 gap-spacing-md" aria-label="Project case studies">
               {selectedProjects.map((project) => (
-                <article key={project.name} className={contentCardClass}>
+                <article key={project.name} className={projectCardClass}>
                   <Text variant="h3">{project.name}</Text>
 
                   <div className="space-y-spacing-xs">
@@ -108,7 +116,7 @@ export default function HomePage() {
                     </Text>
                     <ul className="flex flex-wrap gap-spacing-xs">
                       {project.techStack.map((tech) => (
-                        <li key={tech} className="rounded-radius-sm border border-border px-spacing-xs py-[0.15rem]">
+                        <li key={tech} className="rounded-radius-sm bg-background/70 px-spacing-xs py-[0.15rem]">
                           <Text as="span" variant="small" className="text-muted">
                             {tech}
                           </Text>
@@ -133,29 +141,7 @@ export default function HomePage() {
           </Container>
         </Section>
 
-        <Section id="engineering-approach" aria-labelledby="approach-title">
-          <Container className={sectionContainerClass}>
-            <header className={sectionHeaderClass}>
-              <Text id="approach-title" variant="h2">
-                Engineering Approach
-              </Text>
-              <Text variant="body" className="text-muted">
-                Core strengths used to build maintainable, production-ready product systems.
-              </Text>
-            </header>
-            <ul className={listClass}>
-              {skillsHighlight.map((skill) => (
-                <li key={skill}>
-                  <Text variant="body" className="text-muted">
-                    {skill}
-                  </Text>
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </Section>
-
-        <Section id="experience" aria-labelledby="experience-title" bordered={false}>
+        <Section id="experience" aria-labelledby="experience-title">
           <Container className={sectionContainerClass}>
             <header className={sectionHeaderClass}>
               <Text id="experience-title" variant="h2">
@@ -191,6 +177,8 @@ export default function HomePage() {
             </div>
           </Container>
         </Section>
+
+        <Contact />
       </main>
       <Footer />
     </div>

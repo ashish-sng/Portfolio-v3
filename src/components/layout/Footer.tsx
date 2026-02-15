@@ -2,11 +2,19 @@ import { Container } from "@/components/ui/Container";
 import { Text } from "@/components/ui/Text";
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-border bg-background" role="contentinfo">
-      <Container className="py-spacing-lg">
+    <footer className="bg-background pb-spacing-xl" role="contentinfo">
+      <Container className="space-y-spacing-xs">
         <Text variant="small" className="text-muted">
-          {new Date().getFullYear()} Ashish Singh. Built with Next.js and a token-driven UI system.
+          Built with Next.js, TypeScript, Tailwind CSS.
+        </Text>
+        <Text variant="small" className="text-muted">
+          Deployed on Vercel.
+        </Text>
+        <Text variant="small" className="text-muted">
+          Last updated {currentYear}.
         </Text>
       </Container>
     </footer>

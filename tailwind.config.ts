@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "media",
+  darkMode: "class",
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,12 +13,12 @@ const config: Config = {
       // Semantic tokens keep component classes stable even when visual values change.
       // This keeps the UI consistent and avoids class churn across themes.
       colors: {
-        background: "rgb(var(--color-background) / <alpha-value>)",
-        foreground: "rgb(var(--color-foreground) / <alpha-value>)",
-        muted: "rgb(var(--color-muted) / <alpha-value>)",
-        border: "rgb(var(--color-border) / <alpha-value>)",
-        surface: "rgb(var(--color-surface) / <alpha-value>)",
-        accent: "rgb(var(--color-accent) / <alpha-value>)"
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        border: "rgb(var(--border) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)"
       },
       fontSize: {
         h1: [
