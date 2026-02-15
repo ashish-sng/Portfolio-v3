@@ -8,9 +8,9 @@ export function SelectedWorkSection() {
         title="Selected Work"
         description="Representative product and platform work focused on quality, performance, and maintainability."
       />
-      <ul className="space-y-3">
+      <ul className="space-y-spacing-sm">
         {selectedProjects.map((project) => (
-          <li key={project.name} className="rounded-lg border border-border bg-surface p-4">
+          <li key={project.name} className="rounded-radius-md border border-border bg-surface p-spacing-md">
             <h3 className="font-medium">{project.name}</h3>
             <p className="mt-1 text-sm text-muted">{project.summary}</p>
           </li>

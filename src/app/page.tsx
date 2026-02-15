@@ -5,7 +5,7 @@ import { SelectedWorkSection } from "@/components/projects/selected-work-section
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="m-spacing-md bg-background p-spacing-md text-base text-foreground">
       <HeroSection />
       <SelectedWorkSection />
       <EngineeringApproachSection />
