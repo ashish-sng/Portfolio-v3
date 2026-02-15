@@ -13,8 +13,8 @@ const variantClasses: Record<TextVariant, string> = {
   h1: "text-h1 font-semibold tracking-tight",
   h2: "text-h2 font-semibold tracking-tight",
   h3: "text-body font-semibold tracking-tight",
-  body: "text-body",
-  small: "text-small"
+  body: "text-body break-words",
+  small: "text-small break-words"
 };
 
 const defaultElementByVariant: Record<TextVariant, ElementType> = {

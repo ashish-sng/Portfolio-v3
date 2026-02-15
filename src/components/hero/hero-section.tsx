@@ -12,11 +12,11 @@ export function HeroSection({ summary }: HeroSectionProps) {
       id="hero"
       aria-labelledby="hero-heading"
       spacing="lg"
-      className="pb-[3rem] pt-[3rem] sm:pb-[3rem] sm:pt-[3rem]"
+      className="pb-[4.5rem] pt-[5rem] sm:pb-[5.5rem] sm:pt-[6rem]"
     >
-      <Container>
+      <Container className="px-5 sm:px-8">
         <div className="max-w-2xl space-y-spacing-md">
-          <Text as="h1" id="hero-heading" variant="h1">
+          <Text as="h1" id="hero-heading" variant="h1" className="leading-tight">
             Ashish Singh
           </Text>
           <Text

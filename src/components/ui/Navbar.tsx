@@ -20,6 +20,7 @@ function applyTheme(theme: Theme) {
 export function Navbar() {
   const [theme, setTheme] = useState<Theme>("light");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
@@ -48,48 +49,50 @@ export function Navbar() {
     localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
   };
 
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const navLinkClass =
+    "inline-flex min-h-10 items-center rounded-radius-sm px-spacing-xs text-muted/80 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40";
+
+  const iconLinkClass =
+    "inline-flex h-10 w-10 items-center justify-center rounded-radius-sm text-muted/80 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40";
+
+  const mobileMenuLinkClass =
+    "inline-flex min-h-10 items-center rounded-radius-sm px-spacing-sm text-muted/90 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40";
+
   return (
     <header
       className={[
-        "sticky top-0 z-40 h-14 bg-transparent backdrop-blur-sm",
+        "fixed inset-x-0 top-0 z-50 h-14 w-full bg-transparent backdrop-blur-sm",
         isScrolled ? "bg-background/70 shadow-[0_1px_0_0_rgb(var(--border)/0.6)]" : ""
       ]
         .filter(Boolean)
         .join(" ")}
       role="banner"
     >
-      <Container className="flex h-full items-center justify-between">
+      <Container className="flex h-full min-w-0 items-center justify-between gap-spacing-sm">
         <Text as="p" variant="small" className="text-muted/70">
           AS
         </Text>
 
-        <nav aria-label="Primary navigation">
-          <ul className="flex items-center gap-spacing-sm">
+        <nav aria-label="Primary navigation" className="relative min-w-0">
+          <ul className="hidden items-center gap-spacing-sm whitespace-nowrap md:flex">
             <li>
-              <a
-                href="#work"
-                className="rounded-radius-sm px-spacing-xs py-spacing-xs text-muted/80 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-              >
+              <a href="#work" className={navLinkClass}>
                 <Text as="span" variant="small" className="text-muted/80">
                   Work
                 </Text>
               </a>
             </li>
             <li>
-              <a
-                href="#experience"
-                className="rounded-radius-sm px-spacing-xs py-spacing-xs text-muted/80 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-              >
+              <a href="#experience" className={navLinkClass}>
                 <Text as="span" variant="small" className="text-muted/80">
                   Experience
                 </Text>
               </a>
             </li>
             <li>
-              <a
-                href="#contact"
-                className="rounded-radius-sm px-spacing-xs py-spacing-xs text-muted/80 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-              >
+              <a href="#contact" className={navLinkClass}>
                 <Text as="span" variant="small" className="text-muted/80">
                   Contact
                 </Text>
@@ -101,7 +104,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Ashish Singh GitHub profile"
-                className="rounded-radius-sm p-spacing-xs text-muted/80 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+                className={iconLinkClass}
               >
                 <svg
                   aria-hidden="true"
@@ -124,7 +127,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Ashish Singh LinkedIn profile"
-                className="rounded-radius-sm p-spacing-xs text-muted/80 transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+                className={iconLinkClass}
               >
                 <svg
                   aria-hidden="true"
@@ -149,7 +152,7 @@ export function Navbar() {
                 as="a"
                 href="/resume.pdf"
                 variant="secondary"
-                className="px-spacing-sm py-[0.4rem] border-accent/20 text-foreground hover:bg-accent/5"
+                className="min-h-10 whitespace-nowrap px-spacing-sm py-[0.4rem] border-accent/20 text-foreground hover:bg-accent/5"
               >
                 Resume
               </Button>
@@ -158,7 +161,7 @@ export function Navbar() {
               <Button
                 type="button"
                 variant="secondary"
-                className="px-spacing-sm py-spacing-xs"
+                className="min-h-10 min-w-10 px-spacing-sm py-spacing-xs"
                 aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
                 onClick={toggleTheme}
               >
@@ -200,6 +203,158 @@ export function Navbar() {
               </Button>
             </li>
           </ul>
+
+          <div className="flex max-w-full items-center gap-spacing-xs md:hidden">
+            <Button
+              as="a"
+              href="/resume.pdf"
+              variant="secondary"
+              className="min-h-10 px-spacing-xs py-[0.4rem] border-accent/20 text-foreground hover:bg-accent/5 sm:px-spacing-sm"
+            >
+              Resume
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              className="min-h-10 min-w-10 px-spacing-xs py-spacing-xs"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? (
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2" />
+                  <path d="M12 20v2" />
+                  <path d="M4.9 4.9l1.4 1.4" />
+                  <path d="M17.7 17.7l1.4 1.4" />
+                  <path d="M2 12h2" />
+                  <path d="M20 12h2" />
+                  <path d="M4.9 19.1l1.4-1.4" />
+                  <path d="M17.7 6.3l1.4-1.4" />
+                </svg>
+              ) : (
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+                </svg>
+              )}
+            </Button>
+            <button
+              type="button"
+              className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-radius-md border border-border bg-surface text-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation-menu"
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              {isMenuOpen ? (
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              ) : (
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 6h18" />
+                  <path d="M3 12h18" />
+                  <path d="M3 18h18" />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {isMenuOpen ? (
+            <div
+              id="mobile-navigation-menu"
+              className="absolute right-0 top-[calc(100%+0.5rem)] w-[min(13rem,calc(100vw-2rem))] rounded-radius-md border border-border bg-surface/95 p-spacing-sm"
+            >
+              <ul className="space-y-spacing-xs">
+                <li>
+                  <a href="#work" className={mobileMenuLinkClass} onClick={closeMenu}>
+                    <Text as="span" variant="small" className="text-muted/90">
+                      Work
+                    </Text>
+                  </a>
+                </li>
+                <li>
+                  <a href="#experience" className={mobileMenuLinkClass} onClick={closeMenu}>
+                    <Text as="span" variant="small" className="text-muted/90">
+                      Experience
+                    </Text>
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className={mobileMenuLinkClass} onClick={closeMenu}>
+                    <Text as="span" variant="small" className="text-muted/90">
+                      Contact
+                    </Text>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/ashish-sng"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit Ashish Singh GitHub profile"
+                    className={mobileMenuLinkClass}
+                    onClick={closeMenu}
+                  >
+                    <Text as="span" variant="small" className="text-muted/90">
+                      GitHub
+                    </Text>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/ashish-sng/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit Ashish Singh LinkedIn profile"
+                    className={mobileMenuLinkClass}
+                    onClick={closeMenu}
+                  >
+                    <Text as="span" variant="small" className="text-muted/90">
+                      LinkedIn
+                    </Text>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          ) : null}
         </nav>
       </Container>
     </header>

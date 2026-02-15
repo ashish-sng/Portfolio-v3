@@ -7,8 +7,8 @@ type GridProps = ComponentPropsWithoutRef<"div"> & {
 };
 
 const columnClasses: Record<GridColumns, string> = {
-  two: "grid-cols-1 sm:grid-cols-2",
-  three: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+  two: "grid-cols-1 md:grid-cols-2",
+  three: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
 };
 
 export function Grid({ columns = "three", className = "", children, ...props }: GridProps) {
