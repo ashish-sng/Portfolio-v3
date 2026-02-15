@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-surface: 248 250 252;
+  --color-foreground: 15 23 42;
+  --color-muted: 71 85 105;
+  --color-border: 226 232 240;
+  --color-accent: 30 64 175;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: 2 6 23;
+    --color-foreground: 226 232 240;
+    --color-muted: 148 163 184;
+    --color-border: 30 41 59;
+    --color-accent: 96 165 250;
+  }
+}
+
+body {
+  @apply bg-surface text-foreground antialiased;
+}
