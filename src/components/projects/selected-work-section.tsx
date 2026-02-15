@@ -13,7 +13,7 @@ export function SelectedWorkSection() {
         {selectedProjects.map((project) => (
           <li key={project.name} className="rounded-radius-md border border-border bg-surface p-spacing-md">
             <h3 className="font-medium">{project.name}</h3>
-            <p className="mt-1 text-sm text-muted">{project.summary}</p>
+            <p className="mt-1 text-sm text-muted">{project.problemStatement}</p>
           </li>
         ))}
       </ul>
