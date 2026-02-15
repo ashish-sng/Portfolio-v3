@@ -1,16 +1,25 @@
+import { Button } from "@/components/ui/Button";
+import { Section } from "@/components/ui/Section";
+import { Text } from "@/components/ui/Text";
+
 export function HeroSection() {
   return (
-    <section aria-labelledby="hero-heading" className="border-b border-border py-16 sm:py-20">
+    <Section aria-labelledby="hero-heading" spacing="lg">
       <div className="space-y-4">
-        <p className="text-small font-medium uppercase tracking-wide text-muted">Portfolio</p>
-        <h1 id="hero-heading" className="text-h1 font-semibold">
+        <Text variant="small" className="font-medium uppercase tracking-wide text-muted">
+          Portfolio
+        </Text>
+        <Text as="h1" id="hero-heading" variant="h1">
           Ashish Singh
-        </h1>
-        <p className="text-h2 text-muted">Full-Stack Leaning Frontend Engineer</p>
-        <p className="max-w-2xl text-base leading-relaxed text-foreground/90">
+        </Text>
+        <Text as="h2" variant="h2" className="text-muted">
+          Full-Stack Leaning Frontend Engineer
+        </Text>
+        <Text variant="body" className="max-w-2xl leading-relaxed text-foreground/90">
           Building performant, scalable UI systems with strong backend awareness.
-        </p>
+        </Text>
+        <Button>Download Resume</Button>
       </div>
-    </section>
+    </Section>
   );
 }

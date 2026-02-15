@@ -1,9 +1,10 @@
 import { selectedProjects } from "@/content/projects";
+import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function SelectedWorkSection() {
   return (
-    <section aria-labelledby="selected-work-heading" className="space-y-4 border-b border-border py-14 sm:py-16">
+    <Section aria-labelledby="selected-work-heading">
       <SectionHeading
         title="Selected Work"
         description="Representative product and platform work focused on quality, performance, and maintainability."
@@ -16,6 +17,6 @@ export function SelectedWorkSection() {
           </li>
         ))}
       </ul>
-    </section>
+    </Section>
   );
 }

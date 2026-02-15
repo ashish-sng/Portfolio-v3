@@ -1,3 +1,5 @@
+import { Text } from "@/components/ui/Text";
+
 type SectionHeadingProps = {
   title: string;
   description?: string;
@@ -6,8 +8,14 @@ type SectionHeadingProps = {
 export function SectionHeading({ title, description }: SectionHeadingProps) {
   return (
     <header className="mb-6 space-y-2">
-      <h2 className="text-h2 font-semibold">{title}</h2>
-      {description ? <p className="max-w-2xl text-small text-muted sm:text-base">{description}</p> : null}
+      <Text as="h2" variant="h2">
+        {title}
+      </Text>
+      {description ? (
+        <Text variant="small" className="max-w-2xl text-muted sm:text-base">
+          {description}
+        </Text>
+      ) : null}
     </header>
   );
 }
