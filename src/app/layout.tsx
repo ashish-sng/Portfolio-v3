@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Header } from "@/components/ui/Header";
 import { siteConfig } from "@/lib/site";
 import "@/styles/globals.css";
 
@@ -17,9 +18,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    // Smooth scrolling + sticky header offset support makes in-page anchor navigation predictable.
     <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen pb-16">{children}</body>
+      <body className="min-h-screen pb-16">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

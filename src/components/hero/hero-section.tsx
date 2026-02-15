@@ -5,10 +5,8 @@ import { Text } from "@/components/ui/Text";
 export function HeroSection() {
   return (
     <Section aria-labelledby="hero-heading" spacing="lg">
-      <div className="space-y-4">
-        <Text variant="small" className="font-medium uppercase tracking-wide text-muted">
-          Portfolio
-        </Text>
+      <div className="space-y-spacing-md">
+        <Text variant="small" className="text-muted">Portfolio</Text>
         <Text as="h1" id="hero-heading" variant="h1">
           Ashish Singh
         </Text>
@@ -18,7 +16,9 @@ export function HeroSection() {
         <Text variant="body" className="max-w-2xl leading-relaxed text-foreground/90">
           Building performant, scalable UI systems with strong backend awareness.
         </Text>
-        <Button>Download Resume</Button>
+        <Button as="a" href="/resume.pdf" download>
+          Download Resume
+        </Button>
       </div>
     </Section>
   );

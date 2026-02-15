@@ -1,118 +1,78 @@
-"use client";
-
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Text } from "@/components/ui/Text";
 
-const navLinks = [
-  { href: "#selected-work", label: "Work" },
-  { href: "#engineering-approach", label: "Approach" },
-  { href: "#experience", label: "Experience" }
-] as const;
-
 export function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    // Sticky navigation keeps section links and resume access persistent while browsing long pages.
-    <header
-      className={[
-        "sticky top-0 z-50 border-b border-border bg-background/95 text-foreground backdrop-blur",
-        isScrolled ? "shadow-sm" : ""
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      role="banner"
-    >
-      <Container className="py-spacing-sm">
-        <div className="grid grid-cols-[1fr_auto] items-center gap-spacing-sm md:grid-cols-[1fr_auto_1fr]">
-          <Link
-            href="#hero"
-            className="justify-self-start rounded-radius-sm px-spacing-xs py-spacing-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-            onClick={() => setMenuOpen(false)}
-          >
-            <Text variant="small" className="font-medium uppercase tracking-wide text-muted">
-              Ashish Singh
-            </Text>
-          </Link>
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm" role="banner">
+      <Container className="flex items-center justify-between py-spacing-sm">
+        <Text as="p" variant="h3">
+          Ashish Singh
+        </Text>
 
-          <nav aria-label="Section navigation" className="hidden justify-self-center md:block">
-            <ul className="flex items-center gap-spacing-md">
-              {navLinks.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="rounded-radius-sm px-spacing-xs py-spacing-xs text-small text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="hidden justify-self-end md:block">
-            {/* Resume should be exposed as a clear button-like action so users and screen readers
-               can find the primary hiring CTA immediately without hunting in the page body. */}
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex items-center rounded-radius-md border border-accent bg-accent px-spacing-md py-spacing-sm text-small font-medium text-background transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-            >
-              Download Resume
-            </a>
-          </div>
-
-          <button
-            type="button"
-            className="justify-self-end rounded-radius-md border border-border bg-surface px-spacing-sm py-spacing-xs text-small text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 md:hidden"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen((value) => !value)}
-          >
-            Menu
-          </button>
-        </div>
-
-        {menuOpen ? (
-          <nav
-            id="mobile-nav"
-            aria-label="Mobile section navigation"
-            className="mt-spacing-sm space-y-spacing-sm border-t border-border pt-spacing-sm md:hidden"
-          >
-            <ul className="space-y-spacing-xs">
-              {navLinks.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="block rounded-radius-sm px-spacing-xs py-spacing-xs text-small text-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex items-center rounded-radius-md border border-accent bg-accent px-spacing-md py-spacing-sm text-small font-medium text-background transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-              onClick={() => setMenuOpen(false)}
-            >
-              Download Resume
-            </a>
-          </nav>
-        ) : null}
+        <nav aria-label="Profile links">
+          <ul className="flex items-center gap-spacing-sm">
+            <li>
+              <a
+                href="https://github.com/ashish-sng"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Ashish Singh GitHub profile"
+                className="rounded-radius-sm p-spacing-xs text-muted transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M8 17c-3 1-4-1.5-4-1.5" />
+                  <path d="M16 17v-2.3a3.5 3.5 0 0 0-.9-2.8c3-.3 6.2-1.5 6.2-6.6A5.2 5.2 0 0 0 20 2.8 4.8 4.8 0 0 0 19.9 0S18.8-.3 16 1.6a11 11 0 0 0-8 0C5.2-.3 4.1 0 4.1 0A4.8 4.8 0 0 0 4 2.8a5.2 5.2 0 0 0-1.3 3.5c0 5.1 3.2 6.3 6.2 6.6a3.5 3.5 0 0 0-.9 2.8V17" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/ashish-sng/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Ashish Singh LinkedIn profile"
+                className="rounded-radius-sm p-spacing-xs text-muted transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M8 10v7" />
+                  <path d="M8 7h.01" />
+                  <path d="M12 17v-4a2 2 0 0 1 4 0v4" />
+                  <path d="M12 10v7" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <Button
+                as="a"
+                href="/resume.pdf"
+                variant="secondary"
+                className="border-accent/30 text-accent hover:bg-accent/10"
+              >
+                Resume
+              </Button>
+            </li>
+          </ul>
+        </nav>
       </Container>
     </header>
   );

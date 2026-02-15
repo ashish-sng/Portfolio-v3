@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/Section";
+import { Text } from "@/components/ui/Text";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function ExperienceSection() {
@@ -8,7 +9,9 @@ export function ExperienceSection() {
         title="Experience"
         description="Highlights from roles where engineering execution directly improved product outcomes."
       />
-      <p className="text-small text-muted sm:text-base">Experience timeline and role details will be added.</p>
+      <Text variant="body" className="text-muted">
+        Experience timeline and role details will be added.
+      </Text>
     </Section>
   );
 }

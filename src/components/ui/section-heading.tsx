@@ -12,7 +12,7 @@ export function SectionHeading({ title, description }: SectionHeadingProps) {
         {title}
       </Text>
       {description ? (
-        <Text variant="small" className="max-w-2xl text-muted sm:text-base">
+        <Text variant="body" className="max-w-2xl text-muted">
           {description}
         </Text>
       ) : null}
